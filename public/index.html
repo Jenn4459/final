@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+  <h1>📚 Login to Bookshelf</h1>
+
+  <!-- Google login button -->
+  <div id="g_id_onload"
+       data-client_id="985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse">
+  </div>
+
+  <div class="g_id_signin"></div>
+
+  <script>
+    async function handleCredentialResponse(response) {
+      console.log("Google ID token:", response.credential);
+
+      const res = await fetch("/api/auth/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          token: response.credential
+        })
+      });
+
+      const data = await res.json();
+      console.log("Backend response:", data);
+
+      if (data.user) {
+        alert(`Welcome ${data.user.name} 🎉`);
+        // later you can redirect:
+        // window.location.href = "/dashboard.html";
+      } else {
+        alert("Login failed");
+      }
+    }
+  </script>
+</body>
+</html>
