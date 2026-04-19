@@ -1,9 +1,10 @@
 const db = require('./db.js');
+app.use(express.static("front_end"));
 const express = require("express");
 const { OAuth2Client } = require("google-auth-library");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const client = new OAuth2Client("985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com");
 
