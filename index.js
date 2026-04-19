@@ -1,5 +1,4 @@
 const db = require('./db.js');
-app.use(express.static("front_end"));
 const express = require("express");
 const { OAuth2Client } = require("google-auth-library");
 
@@ -9,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const client = new OAuth2Client("985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com");
 
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static("front_end"));
 
 app.post("/api/auth/google", async (req, res) => {
   const { token } = req.body;
