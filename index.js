@@ -23,6 +23,8 @@ app.post("/api/auth/google", async (req, res) => {
 
     console.log("User info:", payload);
 
+    
+
     res.json({
       message: "Login successful",
       user: {
@@ -37,6 +39,66 @@ app.post("/api/auth/google", async (req, res) => {
     res.status(401).json({ error: "Invalid token" });
   }
 });
+
+/* add books endpoint */
+
+app.post("/api/shelf/add", async (req, res) => {
+  try {
+    const { googleID, bookID } = req.body;
+
+    if (!googleID || !bookID) {
+      return res.status(400).json({
+        success: false,
+        error: "Missing googleID or bookID"
+      });
+    }
+
+    const result = await db.addBooktoShelf(googleID, bookID);
+
+    if (result === 1) {
+      return res.json({
+        success: true,
+        message: "Book added to shelf"
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: "Book already exists on shelf"
+      });
+    }
+
+  } catch (err) {
+    console.error("Error adding book:", err);
+    res.status(500).json({
+      success: false,
+      error: "Server error"
+    });
+  }
+});
+
+
+app.get("/api/shelf/:googleID", async (req, res) => {
+  try {
+    const { googleID } = req.params;
+
+    if (!googleID) {
+      return res.status(400).json({
+        error: "Missing googleID"
+      });
+    }
+
+    const shelf = await db.getUserShelf(googleID);
+
+    res.json(shelf);
+
+  } catch (err) {
+    console.error("Error loading shelf:", err);
+    res.status(500).json({
+      error: "Server error"
+    });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

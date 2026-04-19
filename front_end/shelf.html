@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Shelf</title>
+</head>
+
+<body>
+  <h1>My Book Shelf</h1>
+
+  <!-- Input -->
+  <input id="bookIdInput" placeholder="Enter Book ID" />
+  <button onclick="addBook()">Add Book</button>
+
+  <p id="status"></p>
+
+  <hr />
+
+  <h3>My Shelf</h3>
+  <ul id="shelfList"></ul>
+
+  <script>
+    // You should store this after login
+    const user = JSON.parse(localStorage.getItem("user"));
+    const params = new URLSearchParams(window.location.search);
+    const googleID = params.get("userId");
+
+    
+    async function addBook() {
+      const bookID = document.getElementById("bookIdInput").value;
+
+      if (!bookID) {
+        document.getElementById("status").innerText = "Enter a book ID";
+        return;
+      }
+
+      const res = await fetch("/api/shelf/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          googleID,
+          bookID
+        })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        document.getElementById("status").innerText = "Book added! 📘";
+        loadShelf();
+      } else {
+        document.getElementById("status").innerText = "Book already exists or failed";
+      }
+    }
+
+    async function loadShelf() {
+      const res = await fetch(`/api/shelf/${googleID}`);
+      const books = await res.json();
+
+      const list = document.getElementById("shelfList");
+      list.innerHTML = "";
+
+      books.forEach(book => {
+        const li = document.createElement("li");
+        li.innerText = `${book.title} (${book.id})`;
+        list.appendChild(li);
+      });
+    }
+
+    // load on page start
+    loadShelf();
+  </script>
+</body>
+</html>

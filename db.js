@@ -33,14 +33,14 @@ const db = client.db("final");
 async function findCreateUser(googleID, name, email) 
 {
     const profile = db.collection("profiles");
-    const existingUser = await profiles.findOne({ id: googleID });
+    const existingUser = await profile.findOne({ id: googleID });
     if (existingUser) {
         return existingUser;
     } else {
         const new_user = {
             id: googleID,
             name: name,
-            email, email
+            email: email
         }
         return await profile.insertOne(new_user);
     }
@@ -103,7 +103,7 @@ async function findCreateBook(bookID, title, author, description, image)
 async function findBook(bookID) 
 {
     const find_book = db.collection("books");
-    const book = find_book.findOne({ id: bookID});
+    const book = await find_book.findOne({ id: bookID});
     return book;
 }
 
@@ -136,7 +136,7 @@ async function addBooktoShelf(googleID, bookID)
             user_id: googleID,
             book_id: bookID
         }
-        user_books.insertOne(new_connection);
+        await user_books.insertOne(new_connection);
         return 1;
     } else {
         return 0;
@@ -215,7 +215,7 @@ async function getUserShelf(googleID)
  ******************************************************************/
 async function getShelfHelper(user_books) 
 {
-    user_books_array = await user_books.toArray();
+    const user_books_array = await user_books.toArray();
     const get_books = db.collection("books");
     let shelf = [];
     for (const element of user_books_array) {
