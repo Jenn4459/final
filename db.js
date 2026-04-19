@@ -1,5 +1,5 @@
 /* ======================== INITIAL SETUP =========================*/
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://jperez12_db_user:4lqZ4fo9WsLeHdmV@cs20.iekqa3t.mongodb.net/?appName=CS20";
 const client = new MongoClient(uri, {
     serverApi: {
