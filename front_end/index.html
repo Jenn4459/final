@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Book Link</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
+
 <body>
     <header>
         <a href="index.html">
             <img src="/images/bookLogo.png" alt="Logo" width="150">
-          </a>
-        <button id="login" class="login-btn">login</button>
+        </a>
+        <button id="login" class="login-btn">Login</button>
     </header>
+
     <div class="body-text">
-        <h1>Welcome to Bookshelf!</h1>
-        <p>Your own personal bookshelf from anywhere</p>
+        <h1>Welcome to Book Link</h1>
+        <p>Showcase your reading portfolio and discover your reading identity</p>
+
+        <p class="description">
+            Book Link helps you build a personalized portfolio of the books you’ve read.
+            Go beyond a simple list—see patterns in your reading like average book length,
+            publication trends, and your favorite genres, all in one place.
+        </p>
+
+        <button class="cta-btn">Get Started</button>
     </div>
+
+    <div class="features">
+        <div class="feature">
+            <h3>Build Your Shelf</h3>
+            <p>Add and organize books you've read into your personal collection.</p>
+        </div>
+
+        <div class="feature">
+            <h3>See Your Trends</h3>
+            <p>Analyze your reading habits with stats like genres and book length.</p>
+        </div>
+
+        <div class="feature">
+            <h3>Discover Yourself</h3>
+            <p>Understand your reading identity through your portfolio.</p>
+        </div>
+    </div>
+
     <script>
     function parseJwt(token) {
       const base64Url = token.split('.')[1];
@@ -24,8 +52,6 @@
     }
 
     async function handleCredentialResponse(response) {
-      console.log("Google ID token:", response.credential);
-
       const res = await fetch("/api/auth/google", {
         method: "POST",
         headers: {
@@ -37,14 +63,11 @@
       });
 
       const data = await res.json();
-      console.log("Backend response:", data);
 
       if (data.user) {
-        alert(`Welcome ${data.user.name} `);
         const payload = parseJwt(response.credential);
         const sub = payload.sub;
         window.location.href = `/shelf.html?userId=${sub}`;
-        
       } else {
         alert("Login failed");
       }
@@ -58,6 +81,10 @@
     };
 
     document.getElementById("login").addEventListener("click", () => {
+      google.accounts.id.prompt();
+    });
+
+    document.querySelector(".cta-btn").addEventListener("click", () => {
       google.accounts.id.prompt();
     });
   </script>
