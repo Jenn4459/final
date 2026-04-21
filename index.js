@@ -5,8 +5,8 @@ const { OAuth2Client } = require("google-auth-library");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const client = new OAuth2Client("985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com");
-
+// const client = new OAuth2Client("985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com");
+const client = new OAuth2Client("841358619520-cfdk2429j154d7h472v4as6tj533pk57.apps.googleusercontent.com");
 app.use(express.json());
 app.use(express.static("front_end"));
 
@@ -16,7 +16,8 @@ app.post("/api/auth/google", async (req, res) => {
   try {
     const ticket = await client.verifyIdToken({
       idToken: token,
-      audience: "985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com"
+      // audience: "985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com"
+      audience: "841358619520-cfdk2429j154d7h472v4as6tj533pk57.apps.googleusercontent.com"
     });
 
     const payload = ticket.getPayload();
