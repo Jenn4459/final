@@ -24,7 +24,7 @@ app.post("/api/auth/google", async (req, res) => {
 
     const payload = ticket.getPayload();
     console.log("User info:", payload);
-    const user = await db.findOrCreateUser(payload.sub, payload.name, payload.email);
+    const user = await db.findCreateUser(payload.sub, payload.name, payload.email);
     
 
     res.json({
