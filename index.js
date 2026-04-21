@@ -23,14 +23,14 @@ app.post("/api/auth/google", async (req, res) => {
     });
 
     const payload = ticket.getPayload();
-  
     console.log("User info:", payload);
-
+    const user = await db.findOrCreateUser(payload.sub, payload.name, payload.email);
     
 
     res.json({
       message: "Login successful",
       user: {
+        id: user._id,
         email: payload.email,
         name: payload.name,
         picture: payload.picture
@@ -56,6 +56,7 @@ app.post("/api/shelf/add", async (req, res) => {
       });
     }
 
+    
     const result = await db.addBooktoShelf(googleID, bookID);
 
     if (result === 1) {

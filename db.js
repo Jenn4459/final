@@ -81,7 +81,8 @@ async function findCreateBook(bookID, title, author, description, image)
             description: description,
             image: image
         }
-        return await find_book.insertOne(new_book);
+        await find_book.insertOne(new_book);
+        return await find_book.findOne({ id: bookID });
     }
 }
 
