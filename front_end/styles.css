@@ -17,9 +17,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 28px;
+    padding: 15px 40px;
     background-color: #f5f0e8;
     border-bottom: 1px solid rgba(0,0,0,0.06);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .login-btn {
@@ -49,7 +51,7 @@ h1 {
     margin-bottom: 50px; 
 }
 
-.body-text > p:not(.description) {
+.tagline {
     font-size: 22px;
     margin: 0 auto 60px; 
     max-width: 650px;
@@ -69,7 +71,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     gap: 30px; 
-    padding-bottom: 100px;
+    padding-bottom: 80px;
 }
 
 .feature {
@@ -106,20 +108,21 @@ h1 {
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    .body-text {
-        margin-top: 50px;
-    }
-}
-
 footer {
     padding: 40px 0;
     background-color: #f5f0e8;
     border-top: 1px solid rgba(0,0,0,0.06);
     color: #8a7d7d;
     font-size: 14px;
+    width: 100%;
 }
 
 footer p {
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .body-text {
+        margin-top: 50px;
+    }
 }
