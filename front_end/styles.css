@@ -127,7 +127,6 @@ footer p {
     }
 }
 
-/* Layout Container */
 .container {
     max-width: 1000px;
     margin: 40px auto;
@@ -135,7 +134,6 @@ footer p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Input Styling */
 .add-book-section {
     background: #f8f9fa;
     padding: 25px;
