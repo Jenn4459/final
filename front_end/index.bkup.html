@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookShelf</title>
+  <title>Login</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
+
 <body>
-    <h1>Welcome to our app!!</h1>
-    <p>You are ready to be recommended a book!</p>
+  <h1>Login to Bookshelf</h1>
+
+  <!-- Google login button -->
+  <!-- data-client_id="985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com" -->
+  <div id="g_id_onload"
+       data-client_id="841358619520-cfdk2429j154d7h472v4as6tj533pk57.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse">
+  </div>
+
+  <div class="g_id_signin"></div>
+
+  <script>
+    function parseJwt(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      return JSON.parse(atob(base64));
+    }
+
+    async function handleCredentialResponse(response) {
+      console.log("Google ID token:", response.credential);
+
+      const res = await fetch("/api/auth/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          token: response.credential
+        })
+      });
+
+      const data = await res.json();
+      console.log("Backend response:", data);
+
+      if (data.user) {
+        alert(`Welcome ${data.user.name} `);
+        const payload = parseJwt(response.credential);
+        const sub = payload.sub;
+        window.location.href = `/shelf.html?userId=${sub}`;
+        
+      } else {
+        alert("Login failed");
+      }
+    }
+  </script>
 </body>
 </html>

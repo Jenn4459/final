@@ -31,6 +31,22 @@
   </style>
 </head>
 
+    <h1>Book Search</h1>
+
+    <input type="text" id="searchInput" placeholder="Search for books...">
+    <button onclick="searchBooks()">Search</button>
+
+    <div id="results"></div>
+
+    <div class="pagination">
+        <button onclick="prevPage()">⬅ Prev</button>
+        <span id="pageInfo"></span>
+        <button onclick="nextPage()">Next ➡</button>
+    </div> 
+  <h3>My Shelf</h3>
+  <ul id="shelfList"></ul>
+
+
   <script>
     // You should store this after login
     const user = JSON.parse(localStorage.getItem("user"));
@@ -47,17 +63,17 @@
       const author = book.author_name
       const first_publish_year = book.first_publish_year
       const isbn = book.isbn
+      const id = 420
       const res = await fetch("/api/shelf/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          googleID,
+          id,
+          isbn,
           title,
-          author,
-          first_publish_year,
-          isbn
+          author
         })
       });
 
@@ -100,7 +116,7 @@
       currentQuery = query;
       currentPage = page;
 
-      const url = 'https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&page=${page}&fields=title,isbn,first_publish_year';
+      const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&page=${page}&fields=title,isbn,first_publish_year`;
 
       const res = await fetch(url);
       const data = await res.json();
@@ -119,7 +135,7 @@
         div.className = "book";
 
         div.innerHTML = `
-          <strong>${book.isbn}</strong><br>
+          <strong>${book.title}</strong><br>
           Author: ${book.author_name ? book.author_name.join(", ") : "Unknown"}<br>
           First Published: ${book.first_publish_year || "N/A"}
         `;
