@@ -42,7 +42,8 @@ async function findCreateUser(googleID, name, email)
             name: name,
             email: email
         }
-        return await profile.insertOne(new_user);
+        await profile.insertOne(new_user);
+        return await profile.findOne({ id: googleID });
     }
 }
 
