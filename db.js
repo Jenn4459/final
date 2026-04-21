@@ -76,10 +76,10 @@ async function findCreateBook(bookID, title, author, description, image)
     } else {
         const new_book = {
             id: bookID,
-            title: title,
-            author: author,
-            description: description,
-            image: image
+            title: title || "Unknown Title",
+            author: author || "Unkown Author",
+            description: description || "",
+            image: image || ""
         }
         await find_book.insertOne(new_book);
         return await find_book.findOne({ id: bookID });
