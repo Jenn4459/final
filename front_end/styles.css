@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Brixton';
+    src: url('fonts/brixton-regular.woff2') format('woff2'),
+         url('fonts/brixton-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #fdf5f7;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    background-color: #f5f0e8;
+}
+
+.login-btn {
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #a94e6f;
+    color: #fff;
+}
+
+h1 {
+    font-family: 'Brixton', sans-serif;
+    color: #a94e6f
+}
+
+p {
+    font-family: 'Brixton', sans-serif;
+    color: rgb(125, 112, 112)
+}
