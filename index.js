@@ -56,7 +56,7 @@ app.post("/api/shelf/add", async (req, res) => {
       });
     }
 
-    
+    const book = await db.findCreateBook(bookID, title, author, description, image);
     const result = await db.addBooktoShelf(googleID, bookID);
 
     if (result === 1) {
