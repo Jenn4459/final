@@ -47,7 +47,8 @@ app.post("/api/auth/google", async (req, res) => {
 
 app.post("/api/shelf/add", async (req, res) => {
   try {
-    const { googleID, bookID } = req.body;
+    // const { googleID, bookID } = req.body;
+    const { googleID, bookID, title, author, description, image } = req.body;
 
     if (!googleID || !bookID) {
       return res.status(400).json({
