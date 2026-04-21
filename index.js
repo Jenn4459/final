@@ -5,6 +5,7 @@ const { OAuth2Client } = require("google-auth-library");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//I switched this here - if you want to use yours and just add the heroku uri, go ahead, I just wanted to see the site
 // const client = new OAuth2Client("985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com");
 const client = new OAuth2Client("841358619520-cfdk2429j154d7h472v4as6tj533pk57.apps.googleusercontent.com");
 app.use(express.json());
@@ -16,13 +17,13 @@ app.post("/api/auth/google", async (req, res) => {
   try {
     const ticket = await client.verifyIdToken({
       idToken: token,
+      //I switched this here - if you want to use yours and just add the heroku uri, go ahead, I just wanted to see the site
       // audience: "985222526221-dcekea3ej8vkkq9ut5i0cn7kid2u0hii.apps.googleusercontent.com"
       audience: "841358619520-cfdk2429j154d7h472v4as6tj533pk57.apps.googleusercontent.com"
     });
 
     const payload = ticket.getPayload();
-    // i added this small code to check something just fyi
-    const user = await db.findCreateUser(payload.sub, payload.name, payload.email);
+  
     console.log("User info:", payload);
 
     
