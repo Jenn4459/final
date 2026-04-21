@@ -62,9 +62,10 @@ p {
 .description {
     font-size: 17px;
     max-width: 520px;
-    margin: 20px auto;
+    margin: 20px auto;   
     line-height: 1.7;
     color: #6f6464;
+    text-align: center;  
 }
 
 .cta-btn {
