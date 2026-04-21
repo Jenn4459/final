@@ -6,79 +6,77 @@
 </head>
 
 <body>
-    <header>
+  <header>
         <a href="index.html">
-            <img src="/images/bookLogo.png" alt="Company Logo" width="150">
-        </a>
-        <button id="login" class="login-btn">Login</button>
+            <img src="../images/bookLogo.png" alt="Company Logo" width="150">
+          </a>
+        <button id="login" class="login-btn">login</button>
     </header>
+  <h1>My Book Shelf</h1>
 
-    <div class="container">
-        <section class="add-book-section">
-            <h2>Add to your collection</h2>
-            <div class="input-group">
-                <input id="bookIdInput" placeholder="Enter Google Books ID (e.g., zyTCAlS7f98C)" />
-                <button onclick="addBook()" class="add-btn">Add Book</button>
-            </div>
-            <p id="status"></p>
-        </section>
+  <!-- Input -->
+  <input id="bookIdInput" placeholder="Enter Book ID" />
+  <button onclick="addBook()">Add Book</button>
 
-        <hr class="divider" />
+  <p id="status"></p>
 
-        <section class="shelf-section">
-            <h3>My Book Shelf</h3>
-            <div id="shelfGrid" class="book-grid"></div>
-        </section>
-    </div>
+  <hr />
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const googleID = params.get("userId");
+  <h3>My Shelf</h3>
+  <ul id="shelfList"></ul>
 
-        async function addBook() {
-            const bookID = document.getElementById("bookIdInput").value;
-            if (!bookID) {
-                document.getElementById("status").innerText = "Enter a book ID";
-                return;
-            }
+  <script>
+    // You should store this after login
+    const user = JSON.parse(localStorage.getItem("user"));
+    const params = new URLSearchParams(window.location.search);
+    const googleID = params.get("userId");
 
-            const res = await fetch("/api/shelf/add", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ googleID, bookID })
-            });
+    
+    async function addBook() {
+      const bookID = document.getElementById("bookIdInput").value;
 
-            const data = await res.json();
-            if (data.success) {
-                document.getElementById("status").innerText = "Book added! 📘";
-                loadShelf();
-            } else {
-                document.getElementById("status").innerText = "Book already exists or failed";
-            }
-        }
+      if (!bookID) {
+        document.getElementById("status").innerText = "Enter a book ID";
+        return;
+      }
 
-        async function loadShelf() {
-            if (!googleID) return;
+      const res = await fetch("/api/shelf/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          googleID,
+          bookID
+        })
+      });
 
-            const res = await fetch(`/api/shelf/${googleID}`);
-            const books = await res.json();
+      const data = await res.json();
 
-            const grid = document.getElementById("shelfGrid");
-            grid.innerHTML = "";
-
-            books.forEach(book => {
-                const card = document.createElement("div");
-                card.className = "book-card";
-                card.innerHTML = `
-                    <div style="font-size: 40px; margin-bottom: 10px;">📖</div>
-                    <h4>${book.title}</h4>
-                    <p style="color: #666; font-size: 0.8em;">ID: ${book.id}</p>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
+      if (data.success) {
+        document.getElementById("status").innerText = "Book added! 📘";
         loadShelf();
-    </script>
+      } else {
+        document.getElementById("status").innerText = "Book already exists or failed";
+      }
+    }
+
+    async function loadShelf() {
+      const res = await fetch(`/api/shelf/${googleID}`);
+      const books = await res.json();
+
+      const list = document.getElementById("shelfList");
+      list.innerHTML = "";
+
+      books.forEach(book => {
+        const li = document.createElement("li");
+        li.innerText = `${book.title} (${book.id})`;
+        list.appendChild(li);
+      });
+    }
+
+    // load on page start
+    loadShelf();
+  </script>
 </body>
 </html>
