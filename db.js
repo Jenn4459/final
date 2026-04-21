@@ -128,6 +128,10 @@ async function findBook(bookID)
  ******************************************************************/
 async function addBooktoShelf(googleID, bookID) 
 {
+    if (!bookID || bookID === "" || bookID === "undefined") {
+        console.error("Invalid bookID:", bookID);
+        return 0;
+    }
     const user_books = db.collection("user_books");
     const added = await user_books.findOne(
             { user_id: googleID, 
