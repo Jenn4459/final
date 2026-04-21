@@ -64,14 +64,21 @@
     async function loadShelf() {
       const res = await fetch(`/api/shelf/${googleID}`);
       const books = await res.json();
-
-      const list = document.getElementById("shelfList");
-      list.innerHTML = "";
-
+    
+      const grid = document.getElementById("shelfGrid"); // Match the new ID
+      grid.innerHTML = "";
+    
       books.forEach(book => {
-        const li = document.createElement("li");
-        li.innerText = `${book.title} (${book.id})`;
-        list.appendChild(li);
+        const card = document.createElement("div");
+        card.className = "book-card";
+        
+        card.innerHTML = `
+          <div class="book-icon" style="font-size: 40px;">📖</div>
+          <h4>${book.title}</h4>
+          <p>ID: ${book.id}</p>
+        `;
+        
+        grid.appendChild(card);
       });
     }
 
