@@ -30,7 +30,7 @@ header {
     box-sizing: border-box;
 }
 
-main {
+main, .main-content {
     flex: 1;
     padding: 60px 20px;
     max-width: 800px;
@@ -45,11 +45,7 @@ h1 {
     margin-bottom: 40px;
 }
 
-h3 {
-    color: #a94e6f;
-    font-size: 26px;
-}
-
+/* Global Button Styles */
 .login-btn, .cta-btn, button {
     padding: 10px 20px;
     border-radius: 8px;
@@ -66,25 +62,35 @@ h3 {
     background: #8e3d5a;
 }
 
-input[type="text"] {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    width: 60%;
-    max-width: 300px;
+.pagination button {
+    padding: 8px 15px; 
+    font-size: 14px;
+    min-width: 100px;  
+    margin: 0 5px;
 }
 
 .tagline {
     font-size: 22px;
     line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+.description {
+    font-size: 17px;
+    line-height: 1.6;
     margin-bottom: 40px;
 }
 
 .features {
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    align-items: center;
+}
+
+.feature h3 {
+    color: #a94e6f;
+    margin-bottom: 10px;
 }
 
 footer {
@@ -97,13 +103,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    main {
-        padding-top: 40px;
-    }
-    h1 {
-        font-size: 36px;
-    }
-    header {
-        padding: 15px 20px;
-    }
+    h1 { font-size: 36px; }
+    header { padding: 15px 20px; }
 }
