@@ -67,7 +67,7 @@ async function findCreateUser(googleID, name, email)
  *      an ID, title, author, description, and image  to be provided
  * Notes:
  ******************************************************************/
-async function findCreateBook(bookID, title, author, description, image) 
+async function findCreateBook(bookID, title, author, top_genre, pub_date) 
 {
     const find_book = db.collection("books");
     const book = await find_book.findOne({ id: bookID});
@@ -78,8 +78,8 @@ async function findCreateBook(bookID, title, author, description, image)
             id: bookID,
             title: title || "Unknown Title",
             author: author || "Unkown Author",
-            description: description || "",
-            image: image || ""
+            description: top_genre || "",
+            image: pub_date || ""
         }
         await find_book.insertOne(new_book);
         return await find_book.findOne({ id: bookID });
