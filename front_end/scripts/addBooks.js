@@ -51,6 +51,23 @@ async function loadShelf() {
     books.forEach(book => {
     const li = document.createElement("li");
     li.innerText = `${book.title} (${book.author})`;
+
+     // remove button
+    const btn = document.createElement("button");
+    btn.innerText = "Remove";
+
+    btn.addEventListener("click", async () => {
+        // remove from DOM
+        li.remove();
+
+        // OPTIONAL: also remove from backend
+        fetch(`/api/shelf/${googleID}/${book.id}`, {
+            method: "DELETE"
+        });
+
+    });
+    
+    li.appendChild(btn)
     list.appendChild(li);
     });
 }

@@ -104,6 +104,40 @@ app.get("/api/shelf/:googleID", async (req, res) => {
   }
 });
 
+app.delete("/api/shelf/:googleID/:bookID", async (req, res) => {
+  try {
+    const { googleID, bookID } = req.params;
+    console.log("test");
+
+    if (!googleID || !bookID) {
+      return res.status(400).json({
+        success: false,
+        error: "Missing googleID or bookID"
+      });
+    }
+
+    const result = await db.removeBookFromShelf(googleID, bookID);
+
+    if (result === 1) {
+      return res.json({
+        success: true,
+        message: "Book removed from shelf"
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: "Book not found on shelf"
+      });
+    }
+
+  } catch (err) {
+    console.error("Error deleting book:", err);
+    res.status(500).json({
+      success: false,
+      error: "Server error"
+    });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

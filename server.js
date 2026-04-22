@@ -11,6 +11,7 @@ const client = new OAuth2Client("841358619520-cfdk2429j154d7h472v4as6tj533pk57.a
 app.use(express.json());
 app.use(express.static("front_end"));
 
+
 app.post("/api/auth/google", async (req, res) => {
   const { token } = req.body;
 
@@ -104,6 +105,39 @@ app.get("/api/shelf/:googleID", async (req, res) => {
   }
 });
 
+app.delete("/api/shelf/:googleID/:bookID", async (req, res) => {
+  try {
+    const { googleID, bookID } = req.params;
+
+    if (!googleID || !bookID) {
+      return res.status(400).json({
+        success: false,
+        error: "Missing googleID or bookID"
+      });
+    }
+    
+    const result = await db.removeBookfromShelf(googleID, bookID);
+
+    if (result === 1) {
+      return res.json({
+        success: true,
+        message: "Book removed from shelf"
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: "Book not found on shelf"
+      });
+    }
+
+  } catch (err) {
+    console.error("Error deleting book:", err);
+    res.status(500).json({
+      success: false,
+      error: "Server error"
+    });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
