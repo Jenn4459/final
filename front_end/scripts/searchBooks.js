@@ -35,12 +35,17 @@ function displayResults(books) {
     `;
 
 
-    const button = document.createElement("button");
-    button.textContent = "Add Book";
+    const add = document.createElement("button");
+    const details = document.createElement("button");
 
-    button.onclick = () => addBook(book);
+    add.textContent = "Add Book";
+    details.textContent = "Details"
 
-    div.appendChild(button);
+    add.onclick = () => addBook(book);
+    details.onclick = () => window.location.href = `/details.html?isbn=${book.isbn[0]}`
+
+    div.appendChild(add);
+    div.appendChild(details)
 
     resultsDiv.appendChild(div);
     });
