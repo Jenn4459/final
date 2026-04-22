@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Shelf</title>
-  <link rel="stylesheet" href="styles.css">
+    <title>My Shelf - Book Link</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <script src='scripts/addBooks.js'></script>
-  <script src='scripts/searchBooks.js'></script>
+    <script src='scripts/addBooks.js'></script>
 
-  <header>
-    <a href="index.html">
-      <img src="../images/bookLogo.png" alt="Company Logo" width="150">
-    </a>
-    <button id="login" class="login-btn">login</button>
-  </header>
+    <header>
+        <a href="index.html">
+            <img src="../images/bookLogo.png" alt="Company Logo" width="150">
+        </a>
+        <nav>
+            <a href="search.html" class="nav-link">Find Books</a>
+            <button id="login" class="login-btn">Login</button>
+        </nav>
+    </header>
 
-  <main>
-    <h1>My Book Shelf</h1>
+    <main>
+        <h1>My Book Shelf</h1>
+        
+        <div class="shelf-container">
+            <ul id="shelfList"></ul>
+        </div>
 
-    <input type="text" id="searchInput" placeholder="Search for books...">
-    <button onclick="searchBooks()">Search</button>
+        <hr />
 
-    <div id="results"></div>
+        <section class="profile-section">
+            <h4>My Stats</h4>
+            <div id="averagePublishYear" class="stat-box">Average Year of publication</div>
+        </section>
+    </main>
 
-    <div class="pagination">
-      <button onclick="prevPage()">⬅ Prev</button>
-      <span id="pageInfo"></span>
-      <button onclick="nextPage()">Next ➡</button>
-    </div> 
-
-    <p id="status"></p>
-
-    <hr />
-
-    <h3>My Shelf</h3>
-    <ul id="shelfList"></ul>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 Book Link. All rights reserved. &trade;</p>
-  </footer>
-  
-  <h4>My Profile</h4>
-  <div id="averagePublishYear">Average Year of publication</div>
+    <footer>
+        <p>&copy; 2026 Book Link. All rights reserved. &trade;</p>
+    </footer>
 </body>
 </html>
