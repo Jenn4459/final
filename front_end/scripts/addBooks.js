@@ -65,7 +65,7 @@ async function loadShelf() {
             method: "DELETE"
         });
 
-    });
+        });
     
     li.appendChild(btn)
     list.appendChild(li);

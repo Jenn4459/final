@@ -10,7 +10,7 @@ async function searchBooks(page = 1) {
     currentQuery = query;
     currentPage = page;
 
-    const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&page=${page}&fields=title,isbn,author_name,first_publish_year`;
+    const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&page=${page}&limit=5&fields=title,isbn,author_name,first_publish_year`;
 
     const res = await fetch(url);
     const data = await res.json();
