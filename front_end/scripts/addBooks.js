@@ -7,10 +7,10 @@ const googleID = params.get("userId");
 async function addBook(book) {
 
 
-    bookID = book.isbn[0]
-    title = book.title
-    author = book.author_name.join(", ")
-
+    bookID = book.isbn[0];
+    title = book.title;
+    author = book.author_name.join(", ");
+    date = book.first_publish_year;
 
 
     if (!bookID) {
@@ -27,7 +27,8 @@ async function addBook(book) {
         googleID,
         bookID,
         title,
-        author
+        author,
+        date
     })
     });
 
@@ -42,6 +43,7 @@ async function addBook(book) {
 }
 
 async function loadShelf() {
+    totalYear = 0;
     const res = await fetch(`/api/shelf/${googleID}`);
     const books = await res.json();
 
@@ -49,27 +51,39 @@ async function loadShelf() {
     list.innerHTML = "";
 
     books.forEach(book => {
-    const li = document.createElement("li");
-    li.innerText = `${book.title} (${book.author})`;
+        const li = document.createElement("li");
+        li.innerText = `${book.title} (${book.author})`;
+        // alert(book.description);
+        // totalYear = totalYear + parseInt(book.description);
 
-     // remove button
-    const btn = document.createElement("button");
-    btn.innerText = "Remove";
+        // remove button
+        const btn = document.createElement("button");
+        btn.innerText = "Remove";
+        
+        btn.addEventListener("click", async () => {
+            // remove from DOM
+            li.remove();
 
-    btn.addEventListener("click", async () => {
-        // remove from DOM
-        li.remove();
+            fetch(`/api/shelf/${googleID}/${book.id}`, {
+                method: "DELETE"
+            });
 
-        // OPTIONAL: also remove from backend
-        fetch(`/api/shelf/${googleID}/${book.id}`, {
-            method: "DELETE"
-        });
-
-        });
-    
-    li.appendChild(btn)
-    list.appendChild(li);
+            });
+        
+        li.appendChild(btn)
+        list.appendChild(li);
     });
+
+    // alert(totalYear);
+    // averageYear = Math.round(totalYear / books.length);
+    // console.log(averageYear);
+
+    // if(averageYear){
+    //     averagePublishYear = document.getElementById("averagePublishYear");
+    //     averagePublishYear.innerHTML = `${averageYeare}`;
+    //     ;
+    // }
+
 }
 
 // load on page start
