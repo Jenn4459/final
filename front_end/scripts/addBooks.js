@@ -28,6 +28,7 @@ async function addBook(book) {
         bookID,
         title,
         author,
+        top_genere,
         date
     })
     });
