@@ -9,7 +9,13 @@ async function topSubject(isbn){
     const res = await fetch(url);
     const data = await res.json();
     const book = data[`ISBN:${isbn}`];
-    return book.subjects[0].name;
+    if(!book.subjects){
+        return [];
+    }
+    const top_genere = subjects.splice(0,5).map((element, index, array) => {
+        return element.name;
+      });
+    return top_genere;
 }
 
 
