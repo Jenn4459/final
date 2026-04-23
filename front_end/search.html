@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Books - Book Link</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html">
+            <img src="images/bookLogo.png" alt="Book Link" width="140">
+        </a>
+        <nav>
+            <a href="shelf.html" class="nav-link">My Shelf</a>
+            <a href="search.html" class="nav-link active">Find Books</a>
+            <div class="nav-divider"></div>
+            <button id="login" class="login-btn">Login</button>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Find Books</h1>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by title, author, or ISBN…">
+            <button onclick="searchBooks(1)">Search</button>
+        </div>
+
+        <div id="results" class="results-grid"></div>
+
+        <div class="pagination">
+            <button onclick="prevPage()">← Prev</button>
+            <span id="pageInfo"></span>
+            <button onclick="nextPage()">Next →</button>
+        </div>
+
+        <p id="status"></p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Book Link. All rights reserved. &trade;</p>
+    </footer>
+
+    <script src="scripts/addBooks.js"></script>
+    <script src="scripts/searchBooks.js"></script>
+</body>
+</html>
