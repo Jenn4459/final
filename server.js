@@ -49,7 +49,7 @@ app.post("/api/shelf/add", async (req, res) => {
   try {
     // const { googleID, bookID } = req.body;
 
-    const { googleID, bookID, title, author, date, image } = req.body;
+    const { googleID, bookID, title, author, top_genere, pub_date} = req.body;
     if (!googleID || !bookID) {
       return res.status(400).json({
         success: false,
@@ -57,8 +57,9 @@ app.post("/api/shelf/add", async (req, res) => {
       });
     }
 
-    const book = await db.findCreateBook(bookID, title, author, date, image);
-    const result = await db.addBooktoShelf(googleID, bookID);
+    const book = await db.findCreateBook(bookID, title, author, top_genere, pub_date);
+    console.log(book);
+    const result = await db.addBooktoShelf(googleID, book.id);
 
     if (result === 1) {
       return res.json({

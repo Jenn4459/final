@@ -4,19 +4,25 @@ const params = new URLSearchParams(window.location.search);
 const googleID = params.get("userId");
 
 
+async function topSubject(isbn){
+    const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const book = data[`ISBN:${isbn}`];
+    return book.subjects[0].name;
+}
+
+
 async function addBook(book) {
 
 
     bookID = book.isbn[0];
     title = book.title;
     author = book.author_name.join(", ");
-    date = book.first_publish_year;
+  
+    top_genere = await topSubject(bookID);
+    pub_date = book.first_publish_year;
 
-
-    if (!bookID) {
-        document.getElementById("status").innerText = "Enter a book ID";
-        return;
-    }
 
     const res = await fetch("/api/shelf/add", {
     method: "POST",
@@ -29,7 +35,7 @@ async function addBook(book) {
         title,
         author,
         top_genere,
-        date
+        pub_date
     })
     });
 
@@ -54,8 +60,7 @@ async function loadShelf() {
     books.forEach(book => {
         const li = document.createElement("li");
         li.innerText = `${book.title} (${book.author})`;
-        // alert(book.description);
-        // totalYear = totalYear + parseInt(book.description);
+        totalYear = totalYear + parseInt(book.image);
 
         // remove button
         const btn = document.createElement("button");
@@ -75,15 +80,12 @@ async function loadShelf() {
         list.appendChild(li);
     });
 
-    // alert(totalYear);
-    // averageYear = Math.round(totalYear / books.length);
-    // console.log(averageYear);
+    averageYear = Math.round(totalYear / books.length);
 
-    // if(averageYear){
-    //     averagePublishYear = document.getElementById("averagePublishYear");
-    //     averagePublishYear.innerHTML = `${averageYeare}`;
-    //     ;
-    // }
+    if(averageYear > 0){
+        averagePublishYear = document.getElementById("averagePublishYear");
+        averagePublishYear.innerHTML = `Average published year of bookshelf: ${averageYear}`;
+    }
 
 }
 
