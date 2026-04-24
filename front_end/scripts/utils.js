@@ -26,14 +26,28 @@ function logout()
     window.location.href = "/index.html";
 }
 
-let notFirst = false;
-function toggleMenu() 
-{
-    const dropdown = document.getElementById("profile-dropdown");
-    if (dropdown.style.display === "block" && notFirst) {
-        dropdown.style.display = "none";
-    } else {
-        dropdown.style.display = "block";
+// let notFirst = false;
+// function toggleMenu() 
+// {
+//     const dropdown = document.getElementById("profile-dropdown");
+//     if (dropdown.style.display === "block" && notFirst) {
+//         dropdown.style.display = "none";
+//     } else {
+//         dropdown.style.display = "block";
+//     }
+//     notFirst = true;
+// }
+function setupProfileClick() {
+    const profileImg = document.getElementById("profileImg");
+    if (profileImg) {
+        profileImg.addEventListener("click", function(e) {
+            e.stopPropagation();
+            const dropdown = document.getElementById("profile-dropdown");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        });
     }
-    notFirst = true;
 }
