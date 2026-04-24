@@ -29,8 +29,8 @@ function logout()
 function toggleMenu() 
 {
     const dropdown = document.getElementById("profile-dropdown");
-    const logbtn = document.getElementById("login");
-    if (logbtn.style.display === "none") {
+    const profile = document.getElementById("profile");
+    if (profile.style.display !== "none") {
         if (dropdown.style.display === "block") {
             dropdown.style.display = "none";
         } else {
