@@ -70,9 +70,15 @@
       const data = await res.json();
 
       if (data.user) {
-        const payload = parseJwt(response.credential);
-        const sub = payload.sub;
-        window.location.href = `/shelf.html?userId=${sub}`;
+        // this is a quick test in case anyone sees this
+        // const payload = parseJwt(response.credential);
+        // const sub = payload.sub;
+        // window.location.href = `/shelf.html?userId=${sub}`;
+        localStorage.setItem("googleID", data.user.id);
+        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("picture", data.user.picture);
+        
+        window.location.href = "/shelf.html";
       } else {
         alert("Login failed");
       }
