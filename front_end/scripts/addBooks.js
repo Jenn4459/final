@@ -1,7 +1,12 @@
 // You should store this after login
-const user = JSON.parse(localStorage.getItem("user"));
-const params = new URLSearchParams(window.location.search);
-const googleID = params.get("userId");
+// const user = JSON.parse(localStorage.getItem("user"));
+// const params = new URLSearchParams(window.location.search);
+// const googleID = params.get("userId");
+const googleID = localStorage.getItem("googleID");
+
+if (!googleID) {
+    window.location.href = "/index.html";
+}
 
 
 async function topSubject(isbn){
