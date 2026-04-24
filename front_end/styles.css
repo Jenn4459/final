@@ -42,7 +42,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
-    height: 64px;
+    /* height: 64px; */
+    height: auto;
     background: var(--cream);
 }
 
