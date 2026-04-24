@@ -42,7 +42,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
-    /* height: 64px; */
     height: auto;
     background: var(--cream);
 }
@@ -178,6 +177,63 @@ button:hover {
     padding: 20px;
     border-radius: var(--radius);
     flex: 1;
+}
+
+/* changing login button to profile picture/dropdown menu */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#login-stat {
+    display: flex;
+    align-items: center;
+}
+
+#profile {
+    display: flex;
+    align-items: center;
+}
+
+#profileImg {
+    width: 75px;     
+    height: auto;
+    border-radius: 50%;
+}
+
+#profile #profileImg {
+border: none;
+outline: none;
+color: #a94e6f;
+background-color: inherit;
+font-family: inherit;
+margin: 0;
+}
+
+#profile-dropdown {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+#profile-dropdown a {
+float: none;
+color: #a94e6f;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
 }
 
 /* responsive */

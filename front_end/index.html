@@ -7,12 +7,26 @@
 </head>
 
 <body>
-    <header>
-        <a href="index.html">
-            <img src="/images/bookLogo.png" alt="Logo" width="150">
-        </a>
-        <button id="login" class="login-btn">Login</button>
-    </header>
+  <header>
+    <a href="index.html">
+        <img src="images/bookLogo.png" alt="Book Link" width="140">
+    </a>
+    <nav>
+        <a href="shelf.html" class="nav-link active">My Shelf</a>
+        <a href="search.html" class="nav-link">Find Books</a>
+        <div class="nav-divider"></div>
+        <div id="login-stat">
+            <button id="login" class="login-btn" style="display: none;">Login</button>
+            <div id="profile" style="display: none;">
+                <img id="profileImg" src="" alt="Profile" onclick="toggleMenu()" width="35" style="border-radius: 50%;">
+                <div id="profile-dropdown" class="dropdown" style="display: none;">
+                    <a href="shelf.html">My Shelf</a>
+                    <a href="index.html" onclick="logout(); return false;">Logout</a>
+                </div>
+            </div> 
+        </div>
+    </nav>
+  </header>
   <main>
       <div class="body-text">
           <h1>Welcome to Book Link</h1>
@@ -50,11 +64,11 @@
     </footer>
 
     <script>
-    function parseJwt(token) {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(atob(base64));
-    }
+    // function parseJwt(token) {
+    //   const base64Url = token.split('.')[1];
+    //   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    //   return JSON.parse(atob(base64));
+    // }
 
     async function handleCredentialResponse(response) {
       const res = await fetch("/api/auth/google", {
