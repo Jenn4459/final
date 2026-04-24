@@ -1,13 +1,7 @@
-// You should store this after login
-// const user = JSON.parse(localStorage.getItem("user"));
-// const params = new URLSearchParams(window.location.search);
-// const googleID = params.get("userId");
-const googleID = localStorage.getItem("googleID");
-
-if (!googleID) {
-    window.location.href = "/index.html";
-}
-
+You should store this after login
+const user = JSON.parse(localStorage.getItem("user"));
+const params = new URLSearchParams(window.location.search);
+const googleID = params.get("userId");
 
 async function topSubject(isbn){
     const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
