@@ -1,7 +1,4 @@
-// You should store this after login
-// const user = JSON.parse(localStorage.getItem("user"));
-// const params = new URLSearchParams(window.location.search);
-// const googleID = params.get("userId");
+// getting googleID from Google Auth and storing it to be used across files
 const googleID = localStorage.getItem("googleID");
 
 if (!googleID) {
