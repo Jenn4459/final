@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Shelf - Book Link</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #profile {
+            float: left;
+            overflow: hidden;
+            }
+
+#profile #profileImg {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: #a94e6f;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+#profile-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+#profile-dropdown a {
+  float: none;
+  color: #a94e6f;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+    </style>
 </head>
 <body>
 
@@ -17,12 +53,12 @@
             <a href="search.html" class="nav-link">Find Books</a>
             <div class="nav-divider"></div>
             <div id="login-stat">
-                <button id="login" class="login-btn" style="display: none;">Login</button>
-                <div id="profile" style="display: none;">
+                <!-- <button id="login" class="login-btn" style="display: none;">Login</button> -->
+                <div id="profile" style="display: block;">
                     <img id="profileImg" src="" alt="Profile" onclick="toggleMenu()" width="35" style="border-radius: 50%;">
                     <div id="profile-dropdown" class="dropdown" style="display: none;">
                         <a href="shelf.html">My Shelf</a>
-                        <a href="index.html" onclick="logout()">Logout</a>
+                        <a href="index.html" onclick="logout(); return false;">Logout</a>
                     </div>
                 </div> 
             </div>
@@ -57,7 +93,7 @@
     <script src="scripts/utils.js"></script>
 
     <script>
-        displayProfileIcon();
+        // displayProfileIcon();
     </script>
 </body>
 </html>
