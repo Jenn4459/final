@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Recommendations</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .detail-wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            text-align: left;
+        }
+
+        #cover img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        #title {
+            font-size: 42px;
+            color: #a94e6f;
+            margin: 0 0 10px 0;
+            line-height: 1.1;
+        }
+
+        #author_name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #8a7d7d;
+            margin-bottom: 25px;
+        }
+
+        .meta-group {
+            margin-bottom: 20px;
+            border-top: 1px solid #f5f0e8;
+            padding-top: 15px;
+        }
+
+        .label {
+            display: block;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #a94e6f;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .subject {
+            display: inline-block;
+            background: #fdf5f7;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            border: 1px solid rgba(169, 78, 111, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .detail-wrapper {
+                grid-template-columns: 1fr;
+                margin: 20px;
+                padding: 20px;
+            }
+            #cover {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            #title {
+                font-size: 32px;
+                text-align: center;
+            }
+            #author_name {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="./images/bookLogo.png" alt="Company Logo" width="150">
+        </a>
+        <div id="login-stat">
+            <button id="login" class="login-btn" style="display: none;">Login</button>
+            <div id="profile" style="display: none;">
+                <img id="profileImg" src="" alt="Profile" width="35" style="border-radius: 50%;">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1 style="border-bottom: 1px solid #a94e6f;">My Recommendations</h1>
+        <div class="detail-wrapper">
+            <div id="cover"></div>
+
+            <div class="info-content">
+                <h1 id="title"></h1>
+                <p id="author_name"></p>
+
+                <div class="meta-group">
+                    <span class="label">First Published</span>
+                    <span id="first_publish_year"></span>
+                </div>
+
+                <div class="meta-group">
+                    <span class="label">Key Subjects</span>
+                    <div id="subjects"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Book Link. All rights reserved. &trade;</p>
+    </footer>
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/rec.js"></script>
+
+    <script>
+        displayProfileIcon();
+    </script>
+</body>
+</html>
