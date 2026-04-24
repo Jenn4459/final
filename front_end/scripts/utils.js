@@ -29,9 +29,11 @@ function logout()
 function toggleMenu() 
 {
     const dropdown = document.getElementById("profile-dropdown");
-    if (dropdown.style.display === "block") {
-        dropdown.style.display = "none";
-    } else {
-        dropdown.style.display = "block";
+    if (document.getElementbyId("login").style.display === "none) {
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
     }
 }
