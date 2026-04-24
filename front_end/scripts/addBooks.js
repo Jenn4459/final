@@ -1,4 +1,4 @@
-You should store this after login
+// You should store this after login
 const user = JSON.parse(localStorage.getItem("user"));
 const params = new URLSearchParams(window.location.search);
 const googleID = params.get("userId");
