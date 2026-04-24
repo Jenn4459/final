@@ -28,17 +28,11 @@ function displayResults(books) {
     const div = document.createElement("div");
     div.className = "book";
 
-    // div.innerHTML = `
-    //     <strong>${book.title}</strong><br>
-    //     Author: ${book.author_name ? book.author_name[0] : "Unknown"}<br>
-    //     First Published: ${book.first_publish_year || "N/A"}
-    // `;
-
     div.innerHTML = `
-    <img src="https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-S.jpg" alt="Cover" style="width: 50px; height: auto; margin-right: 10px;">;
-    <strong>${book.title}</strong><br>
+        <strong>${book.title}</strong><br>
+        Author: ${book.author_name ? book.author_name[0] : "Unknown"}<br>
+        First Published: ${book.first_publish_year || "N/A"}
     `;
-
 
     const add = document.createElement("button");
     const details = document.createElement("button");
