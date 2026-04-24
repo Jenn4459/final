@@ -26,15 +26,14 @@ function logout()
     window.location.href = "/index.html";
 }
 
+let notFirst = false;
 function toggleMenu() 
 {
     const dropdown = document.getElementById("profile-dropdown");
-    const profile = document.getElementById("profile");
-    if (profile.style.display !== "none") {
-        if (dropdown.style.display === "block") {
-            dropdown.style.display = "none";
-        } else {
-            dropdown.style.display = "block";
-        }
+    if (dropdown.style.display === "block" && notFirst) {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
     }
+    notFirst = true;
 }
