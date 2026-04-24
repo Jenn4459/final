@@ -28,10 +28,6 @@ function logout()
 
 function toggleMenu() 
 {
-    const login = document.getElementById("login");
-    if (login.style.display === "block") {
-        return displayProfileIcon();
-    }
     const dropdown = document.getElementById("profile-dropdown");
     const profile = document.getElementById("profile");
     if (profile.style.display !== "none") {
