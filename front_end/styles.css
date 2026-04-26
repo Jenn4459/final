@@ -257,4 +257,10 @@ text-align: left;
         height: auto;
         border-radius: 50%;
     }
+    #my-shelf, #find-books {
+        display: none;
+    }
+    #shelf, #find {
+        display: block;
+    }
 }
