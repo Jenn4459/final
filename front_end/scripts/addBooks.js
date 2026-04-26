@@ -49,10 +49,9 @@ async function addBook(book) {
     const data = await res.json();
 
     if (data.success) {
-    document.getElementById("status").innerText = "Book added!";
-    loadShelf();
+        document.getElementById("status").innerText = "Book added!";
     } else {
-    document.getElementById("status").innerText = "Book already exists or failed";
+        document.getElementById("status").innerText = "Book already exists or failed";
     }
 }
 
