@@ -53,6 +53,10 @@ nav {
     gap: 10px;
 }
 
+nav a:first-child {
+    margin-right: auto;
+}
+
 .nav-link {
     text-decoration: none;
     color: var(--muted);
