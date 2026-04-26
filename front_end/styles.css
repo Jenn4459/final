@@ -242,4 +242,19 @@ text-align: left;
     .features {
         flex-direction: column;
     }
+    header {
+        padding: 10px;
+    }
+    nav {
+        gap: 5px;
+    }
+    nav-link {
+        font-size: 11px;
+        padding: 5px;
+    }
+    profileImg {
+        width: 32px;
+        height: auto;
+        border-radius: 50%;
+    }
 }
