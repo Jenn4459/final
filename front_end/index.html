@@ -66,11 +66,6 @@
     <script src="scripts/utils.js"></script>
 
     <script>
-    // function parseJwt(token) {
-    //   const base64Url = token.split('.')[1];
-    //   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    //   return JSON.parse(atob(base64));
-    // }
 
     async function handleCredentialResponse(response) {
       const res = await fetch("/api/auth/google", {
@@ -86,10 +81,6 @@
       const data = await res.json();
 
       if (data.user) {
-        // this is a quick test in case anyone sees this
-        // const payload = parseJwt(response.credential);
-        // const sub = payload.sub;
-        // window.location.href = `/shelf.html?userId=${sub}`;
         localStorage.setItem("googleID", data.user.id);
         localStorage.setItem("userName", data.user.name);
         localStorage.setItem("picture", data.user.picture);

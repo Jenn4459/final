@@ -127,7 +127,7 @@ test("returns all books on user shelf", async () => {
     expect(shelf.length).toBe(2);
   });
 
-  //incrUserGenre
+  //incrUserGenre, decrUserGenre, and getUserGenres
 
   test("increments user's genres when adding book to shelf", async () => {
     await findCreateBook("testBook1", "Title1", "A", ["fantasy", "horror"], "img");
