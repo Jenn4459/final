@@ -1,5 +1,4 @@
 // openLib API paged retrival
-
 let currentPage = 1;
 let currentQuery = "";
 
