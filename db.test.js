@@ -132,9 +132,13 @@ test("returns all books on user shelf", async () => {
   test("increments user's genres when adding book to shelf", async () => {
     await findCreateBook("testBook1", "Title1", "A", ["fantasy", "horror"], "img");
     await findCreateBook("testBook2", "Title2", "B", ["fantasy", "romance"], "img");
+    await findCreateBook("testBook3", "Title2", "B", ["fantasy", "drama"], "img");
   
     await addBooktoShelf("testUser1", "testBook1");
     await addBooktoShelf("testUser1", "testBook2");
+    await addBooktoShelf("testUser1", "testBook3");
+
+    await removeBookfromShelf("testUser1", "testBook3");
   
     const genres = await getUserGenres("testUser1");
 
