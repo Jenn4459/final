@@ -253,7 +253,10 @@ text-align: left;
         padding: 10px;
     }
     nav {
-        gap: 5px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
     }
     nav-link {
         font-size: 11px;
