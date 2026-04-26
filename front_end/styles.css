@@ -52,6 +52,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 nav a:first-child {
@@ -197,12 +198,6 @@ header {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 20px;
 }
 
 #login-stat {
