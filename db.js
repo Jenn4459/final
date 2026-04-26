@@ -77,9 +77,9 @@ async function findCreateBook(bookID, title, author, top_genre, pub_date)
         const new_book = {
             id: bookID,
             title: title || "Unknown Title",
-            author: author || "Unkown Author",
-            description: top_genre || "",
-            image: pub_date || ""
+            author: author || "Unknown Author",
+            top_genre: top_genre,
+            pub_date: pub_date || ""
         }
         await find_book.insertOne(new_book);
         return await find_book.findOne({ id: bookID });
@@ -142,6 +142,10 @@ async function addBooktoShelf(googleID, bookID)
             user_id: googleID,
             book_id: bookID
         }
+        const book = await findBook(bookID);
+        if (book) {
+            await incrUserGenre(googleID, book.top_genre);
+        }
         await user_books.insertOne(new_connection);
         return 1;
     } else {
@@ -177,6 +181,10 @@ async function removeBookfromShelf(googleID, bookID)
 
     if (exists) {
         await user_books.deleteOne({ user_id: googleID, book_id: bookID});
+        const book = await findBook(bookID);
+        if (book) {
+            await decrUserGenre(googleID, book.top_genre);
+        }
         return 1;
     } else {
         return 0;
@@ -232,6 +240,86 @@ async function getShelfHelper(user_books)
     return shelf;
 }
 
+/************************** incrUserGenre *************************
+ *
+ * This is just a helper function for addBooktoShelf, not accessible
+ * to user
+ *
+ * Parameters:
+ *      googleID: the ID of the associated user
+ *      top_genre: an array of genre's associated with a specific
+ *                 book
+ *
+ * Return: nothing, it just creates and/or increments the user's
+ *         genre count
+ *
+ * Expects: top_genre to be an array of genres
+ * Notes: 
+ ******************************************************************/
+async function incrUserGenre(googleID, top_genre)
+{
+    const genres = db.collection("user_genres");
+    for (const element of top_genre) {
+        await genres.updateOne(
+            { id: googleID, genre: element },    
+            { $inc: { count: 1 } },    
+            { upsert: true }
+        );
+    }
+}
+
+/************************** decrUserGenre *************************
+ *
+ * This is just a helper function for removeBooktoShelf, not accessible
+ * to user
+ *
+ * Parameters:
+ *      googleID: the ID of the associated user
+ *      top_genre: an array of genre's associated with a specific
+ *                 book
+ *
+ * Return: nothing, it just creates and/or deccrements the user's
+ *         genre count
+ *
+ * Expects: top_genre to be an array of genres
+ * Notes: 
+ ******************************************************************/
+async function decrUserGenre(googleID, top_genre)
+{
+    const genres = db.collection("user_genres");
+    for (const element of top_genre) {
+        const count = await genres.findOne( {id: googleID, genre: element});
+        if (count && count.count > 0) {
+            await genres.updateOne(
+                { id: googleID, genre: element },    
+                { $inc: { count: -1 } },    
+            );
+        }
+    }
+}
+
+/************************** getUserGenres *************************
+ *
+ * This function retrieves all genres associated with a user's shelf
+ * as well as a count associated with each genre
+ *
+ * Parameters:
+ *      googleID: the ID of the associated user
+ *
+ * Return: an array where each element has a genre and count,
+ *         ex. [{genre: fantasy, count: 10}, {genre: horror, count: 7}]
+ *
+ * Expects: top_genre to be an array of genres
+ * Notes: 
+ ******************************************************************/
+async function getUserGenres(googleID)
+{
+    const genres = db.collection("user_genres");
+    return await genres.aggregate([
+        { $match: { id: googleID, count: { $gt: 0 } } },  
+        { $project: { _id: 0, genre: 1, count: 1 } } 
+    ]).toArray();
+}
 
 
 /* ======================== FUNCTION EXPORTS =========================
@@ -243,5 +331,6 @@ module.exports = {
     findBook,
     addBooktoShelf,
     getUserShelf,
-    removeBookfromShelf
+    removeBookfromShelf,
+    getUserGenres
   };
