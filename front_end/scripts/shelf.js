@@ -27,7 +27,8 @@ async function loadShelf() {
     books.forEach(book => {
         const li = document.createElement("li");
         li.innerText = `${book.title} (${book.author})`;
-        totalYear = totalYear + parseInt(book.image);
+        totalYear = totalYear + parseInt(book.pud_date);
+
 
         // remove button
         const btn = document.createElement("button");

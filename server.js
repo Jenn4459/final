@@ -105,6 +105,30 @@ app.get("/api/shelf/:googleID", async (req, res) => {
   }
 });
 
+app.get("/api/recommendation/:googleID", async (req, res) => {
+  try {
+    const { googleID } = req.params;
+
+    if (!googleID) {
+      return res.status(400).json({
+        error: "Missing googleID"
+      });
+    }
+
+    const genre = await db.getUserGenres(googleID);
+    const API_Key = "9b40eb178d8f4b698a8e8d6177f3f48c"
+    const url =  "https://api.bigbookapi.com/search-books?query=" + genre + "?api-key" + API_Key
+
+
+
+  } catch (err) {
+    console.error("Error loading shelf:", err);
+    res.status(500).json({
+      error: "Server error"
+    });
+  }
+});
+
 app.delete("/api/shelf/:googleID/:bookID", async (req, res) => {
   try {
     const { googleID, bookID } = req.params;
@@ -142,3 +166,6 @@ app.delete("/api/shelf/:googleID/:bookID", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+
+
