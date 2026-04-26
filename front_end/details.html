@@ -125,6 +125,7 @@
                     <span class="label">Key Subjects</span>
                     <div id="subjects"></div>
                 </div>
+                <button class="add-btn" onclick="addBookFromDetails()">+ Add to Shelf</button>
             </div>
         </div>
     </main>
@@ -138,6 +139,20 @@
 
     <script>
         displayProfileIcon();
+    </script>
+
+    <script src="scripts/addBooks.js"></script>
+    <script>
+        function addBookFromDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const book = {
+                title: document.getElementById("title").innerText,
+                author_name: [document.getElementById("author_name").innerText],
+                first_publish_year: document.getElementById("first_publish_year").innerText,
+                isbn: [params.get("isbn")]
+            };
+            addBook(book);
+        }
     </script>
 
 </body>
