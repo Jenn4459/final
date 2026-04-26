@@ -64,6 +64,13 @@ nav {
     color: var(--rose);
 }
 
+#my-shelf, #find-books {
+        display: block;
+    }
+#shelf, #find {
+    display: none;
+}
+
 /* layout */
 
 main {
