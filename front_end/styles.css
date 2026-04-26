@@ -42,7 +42,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 24px;
-    height: 64px;
+    height: auto;
     background: var(--cream);
 }
 
@@ -50,7 +50,13 @@ header {
 
 nav {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+nav a:first-child {
+    margin-right: auto;
 }
 
 .nav-link {
@@ -62,6 +68,13 @@ nav {
 
 .nav-link:hover {
     color: var(--rose);
+}
+
+#my-shelf, #find-books {
+        display: block;
+    }
+#shelf, #find {
+    display: none;
 }
 
 /* layout */
@@ -179,10 +192,85 @@ button:hover {
     flex: 1;
 }
 
+/* changing login button to profile picture/dropdown menu */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#login-stat {
+    display: flex;
+    align-items: center;
+}
+
+#profile {
+    display: flex;
+    align-items: center;
+}
+
+#profileImg {
+    width: 75px;     
+    height: auto;
+    border-radius: 50%;
+}
+
+#profile #profileImg {
+border: none;
+outline: none;
+color: #a94e6f;
+background-color: inherit;
+font-family: inherit;
+margin: 0;
+}
+
+#profile-dropdown {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+#profile-dropdown a {
+float: none;
+color: #a94e6f;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+
 /* responsive */
 
 @media (max-width: 768px) {
     .features {
         flex-direction: column;
+    }
+    header {
+        padding: 10px;
+    }
+    nav {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+    nav-link {
+        font-size: 11px;
+        padding: 5px;
+    }
+    profileImg {
+        width: 32px;
+        height: auto;
+        border-radius: 50%;
+    }
+    #my-shelf, #find-books {
+        display: none;
+    }
+    #shelf, #find {
+        display: block;
     }
 }

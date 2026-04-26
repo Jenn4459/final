@@ -34,7 +34,6 @@ function displayResults(books) {
         First Published: ${book.first_publish_year || "N/A"}
     `;
 
-
     const add = document.createElement("button");
     const details = document.createElement("button");
 

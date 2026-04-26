@@ -4,7 +4,8 @@
     findBook,
     addBooktoShelf,
     removeBookfromShelf,
-    getUserShelf
+    getUserShelf,
+    getUserGenres
   } = require('./db');
   
   const { MongoClient } = require('mongodb');
@@ -26,6 +27,7 @@
     await db.collection("profiles").deleteMany({ id: /test/ });
     await db.collection("books").deleteMany({ id: /test/ });
     await db.collection("user_books").deleteMany({ user_id: /test/ });
+    await db.collection("user_genres").deleteMany({ id: /test/ });
   });
 
 
@@ -123,4 +125,26 @@ test("returns all books on user shelf", async () => {
     const shelf = await getUserShelf("testUser1");
   
     expect(shelf.length).toBe(2);
+  });
+
+  //incrUserGenre, decrUserGenre, and getUserGenres
+
+  test("increments user's genres when adding book to shelf", async () => {
+    await findCreateBook("testBook1", "Title1", "A", ["fantasy", "horror"], "img");
+    await findCreateBook("testBook2", "Title2", "B", ["fantasy", "romance"], "img");
+    await findCreateBook("testBook3", "Title2", "B", ["fantasy", "drama"], "img");
+  
+    await addBooktoShelf("testUser1", "testBook1");
+    await addBooktoShelf("testUser1", "testBook2");
+    await addBooktoShelf("testUser1", "testBook3");
+
+    await removeBookfromShelf("testUser1", "testBook3");
+  
+    const genres = await getUserGenres("testUser1");
+
+    expect(genres).toEqual([
+      { genre: "fantasy", count: 2 },
+      { genre: "horror", count: 1 },
+      { genre: "romance", count: 1}
+    ]);
   });

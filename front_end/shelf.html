@@ -6,55 +6,56 @@
     <title>My Shelf - Book Link</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        #profile {
-            float: left;
-            overflow: hidden;
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-
-        #profileImg {
-            width: 75px;     
-            height: auto;
-            border-radius: 50%;
+    
+        h1 {
+            margin-bottom: 20px;
         }
-
-        #profile #profileImg {
-        border: none;
-        outline: none;
-        color: #a94e6f;
-        padding: 14px 16px;
-        background-color: inherit;
-        font-family: inherit;
-        margin: 0;
+    
+        .shelf-container {
+            margin-bottom: 16px;
         }
-
-        #profile-dropdown {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
+    
+        #shelfList {
+            list-style: none;
+            padding: 0;
         }
-
-        #profile-dropdown a {
-        float: none;
-        color: #a94e6f;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        text-align: left;
+    
+        #shelfList li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0ebe3;
+        }
+    
+        hr {
+            margin: 40px 0;
+            border: none;
+            border-top: 1px solid #e0d9d0;
+        }
+    
+        h3 {
+            margin-bottom: 16px;
+        }
+    
+        #averagePublishYear {
+            margin-bottom: 12px;
+            color: #6b6060;
         }
     </style>
 </head>
 <body>
-
     <header>
-        <a href="index.html">
-            <img src="images/bookLogo.png" alt="Book Link" width="140">
-        </a>
         <nav>
-            <a href="shelf.html" class="nav-link active">My Shelf</a>
-            <a href="search.html" class="nav-link">Find Books</a>
+            <a href="index.html">
+                <img src="images/bookLogo.png" alt="Book Link" width="140">
+            </a>
+            <a href="shelf.html" id="my-shelf" class="nav-link active">My Shelf</a>
+            <a href="shelf.html" id="shelf" class="nav-link active">Shelf</a>
+            <a href="search.html" id="find-books" class="nav-link">Find Books</a>
+            <a href="search.html" id="find" class="nav-link">Find</a>
             <div class="nav-divider"></div>
             <div id="login-stat">
                 <button id="login" class="login-btn" style="display: none;">Login</button>
@@ -80,9 +81,7 @@
 
         <hr>
 
-        <h3>My Shelf</h3>
-        <ul id="shelfList"></ul>
-        <h4>My Profile</h4>
+        <h3>My Profile</h3>
         <div id="averagePublishYear">Average Year of Publication</div>
     
         <div id="Top Generes">Top Generes</div>

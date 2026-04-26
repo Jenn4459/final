@@ -1,8 +1,23 @@
-// You should store this after login
-const user = JSON.parse(localStorage.getItem("user"));
-const params = new URLSearchParams(window.location.search);
-const googleID = params.get("userId");
+// getting googleID from Google Auth and storing it to be used across files
+const googleID = localStorage.getItem("googleID");
 
+if (!googleID) {
+    window.location.href = "/index.html";
+}
+
+async function topSubject(isbn){
+    const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const book = data[`ISBN:${isbn}`];
+    if(!book.subjects){
+        return [];
+    }
+    const top_genere = book.subjects.splice(0,5).map((element, index, array) => {
+        return element.name;
+      });
+    return top_genere;
+}
 
 
 async function addBook(book) {

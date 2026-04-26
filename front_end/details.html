@@ -88,10 +88,26 @@
 <body>
 
     <header>
-        <a href="index.html">
-            <img src="../images/bookLogo.png" alt="Company Logo" width="150">
-        </a>
-        <button id="login" class="login-btn">Login</button>
+        <nav>
+            <a href="index.html">
+                <img src="images/bookLogo.png" alt="Book Link" width="140">
+            </a>
+            <a href="shelf.html" id="my-shelf" class="nav-link active">My Shelf</a>
+            <a href="shelf.html" id="shelf" class="nav-link active">Shelf</a>
+            <a href="search.html" id="find-books" class="nav-link">Find Books</a>
+            <a href="search.html" id="find" class="nav-link">Find</a>
+            <div class="nav-divider"></div>
+            <div id="login-stat">
+                <button id="login" class="login-btn" style="display: none;">Login</button>
+                <div id="profile" style="display: none;">
+                    <img id="profileImg" src="" alt="Profile" onclick="toggleMenu()" width="35" style="border-radius: 50%;">
+                    <div id="profile-dropdown" class="dropdown" style="display: none;">
+                        <a href="shelf.html">My Shelf</a>
+                        <a href="index.html" onclick="logout(); return false;">Logout</a>
+                    </div>
+                </div> 
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -111,6 +127,8 @@
                     <span class="label">Key Subjects</span>
                     <div id="subjects"></div>
                 </div>
+                <button class="add-btn" onclick="addBookFromDetails()">+ Add to Shelf</button>
+                <p id="status"></p>
             </div>
         </div>
     </main>
@@ -119,7 +137,25 @@
         <p>&copy; 2026 Book Link. All rights reserved. &trade;</p>
     </footer>
 
-    <script src="scripts/details.js">
+    <script src="scripts/details.js"></script>
+    <script src="scripts/utils.js"></script>
+
+    <script>
+        displayProfileIcon();
+    </script>
+
+    <script src="scripts/addBooks.js"></script>
+    <script>
+        function addBookFromDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const book = {
+                title: document.getElementById("title").innerText,
+                author_name: [document.getElementById("author_name").innerText],
+                first_publish_year: document.getElementById("first_publish_year").innerText,
+                isbn: [params.get("isbn")]
+            };
+            addBook(book);
+        }
     </script>
 
 </body>
