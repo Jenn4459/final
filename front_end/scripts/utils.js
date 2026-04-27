@@ -1,3 +1,5 @@
+const googleID = localStorage.getItem("googleID");
+
 /************************** isLoggedIn() *************************
  *
  * This function gets the googleID from local storage. It's used

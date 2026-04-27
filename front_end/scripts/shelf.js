@@ -1,7 +1,3 @@
-// getting googleID from Google Auth and storing it to be used across files
-const googleID = localStorage.getItem("googleID");
-
-
 async function topSubject(isbn){
     const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
     const res = await fetch(url);

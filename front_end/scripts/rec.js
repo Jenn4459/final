@@ -1,8 +1,3 @@
-// getting googleID from Google Auth and storing it to be used across files
-let googleID = localStorage.getItem("googleID");
-
-
-
 async function searchBook(query) {
     if (!query) return;
 

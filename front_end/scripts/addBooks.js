@@ -1,5 +1,4 @@
-// getting googleID from Google Auth and storing it to be used across files
-const googleID = localStorage.getItem("googleID");
+
 
 if (!googleID) {
     window.location.href = "/index.html";
