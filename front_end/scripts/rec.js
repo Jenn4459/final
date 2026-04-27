@@ -19,6 +19,5 @@ async function getRecommendation(){
     const data = await res.json();
     const title = data.books[0][0].title;
     const book = await searchBook(title);
-    await addBook(book);
     window.location.href = `/details.html?isbn=${book.isbn[0]}`
 }
