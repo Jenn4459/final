@@ -105,7 +105,7 @@ app.get("/api/shelf/:googleID", async (req, res) => {
   }
 });
 
-app.get("/api/recommendation/:googleID", async (req, res) => {
+app.get("/api/subject/:googleID", async (req, res) => {
   try {
     const { googleID } = req.params;
 
@@ -116,9 +116,8 @@ app.get("/api/recommendation/:googleID", async (req, res) => {
     }
 
     const genre = await db.getUserGenres(googleID);
-    const API_Key = "9b40eb178d8f4b698a8e8d6177f3f48c"
-    const url =  "https://api.bigbookapi.com/search-books?query=" + genre + "?api-key" + API_Key
 
+    res.json(genre)
 
 
   } catch (err) {

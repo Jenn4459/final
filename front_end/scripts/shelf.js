@@ -16,6 +16,17 @@ async function topSubject(isbn){
     return top_genere;
 }
 
+
+async function getSubject(){
+    const res = await fetch(`/api/subject/${googleID}`);
+    const subject = await res.json();
+    const disp = document.getElementById("subject");
+    disp.innerHTML = subject;
+
+    return subject;
+}
+
+
 async function loadShelf() {
     totalYear = 0;
     const res = await fetch(`/api/shelf/${googleID}`);
@@ -56,7 +67,10 @@ async function loadShelf() {
         averagePublishYear.innerHTML = `Average published year of bookshelf: ${averageYear}`;
     }
 
+    getSubject();
 }
+
+
 
 // load on page start
 loadShelf();
