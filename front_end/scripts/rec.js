@@ -13,7 +13,6 @@ async function searchBook(query) {
 
 async function getRecommendation(){
     subject = await getSubject();
-    alert(subject);
     const API_Key = "e48849f6aa854973a9e1b2fab1a207b9";
     const url =  "https://api.bigbookapi.com/search-books?api-key=" + API_Key + "&query=" + subject;
     const res = await fetch(url);
