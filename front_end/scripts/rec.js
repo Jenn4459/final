@@ -2,7 +2,6 @@ async function searchBook(query) {
     if (!query) return;
 
     currentQuery = query;
-    currentPage = page;
 
     const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&page=1&limit=7&fields=title,isbn,author_name,first_publish_year`;
 
@@ -15,7 +14,7 @@ async function searchBook(query) {
 async function getRecommendation(){
     subject = await getSubject();
     alert(subject);
-    const API_Key = "9b40eb178d8f4b698a8e8d6177f3f48c";
+    const API_Key = "e48849f6aa854973a9e1b2fab1a207b9";
     const url =  "https://api.bigbookapi.com/search-books?api-key=" + API_Key + "&query=" + subject;
     const res = await fetch(url);
     const data = await res.json();
