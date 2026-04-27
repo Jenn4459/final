@@ -85,11 +85,6 @@ main {
     max-width: 900px;
     margin: auto;
     width: 100%;
-
-    background-image: url('images/booklink_background.webp'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 footer {
