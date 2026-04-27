@@ -25,7 +25,7 @@ async function getSubject(){
 
     disp.innerHTML = truncated.map(g => `<div>${g.genre} • ${g.count}</div>`).join("");    
 
-    return subject;
+    return subject[0].genre;
 }
 
 
