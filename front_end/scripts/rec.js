@@ -1,5 +1,5 @@
 // getting googleID from Google Auth and storing it to be used across files
-// const googleID = localStorage.getItem("googleID");
+const googleID = localStorage.getItem("googleID");
 
 
 
@@ -24,7 +24,7 @@ async function getRecommendation(){
     const res = await fetch(url);
     const data = await res.json();
     const title = data.books[0].title;
-    const book = searchBooks(title);
+    const book = searchBook(title);
     addBook(book);
-    window.location.href = `/details.html?isbn=${book[0]}`
+    window.location.href = `/details.html?isbn=${book.isbn}`
 }

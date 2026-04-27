@@ -316,10 +316,12 @@ async function getUserGenres(googleID)
 {
     const genres = db.collection("user_genres");
     return await genres.aggregate([
-        { $match: { id: googleID, count: { $gt: 0 } } },  
+        { $match: { id: googleID, count: { $gt: 0 } } },
+        { $sort: { count: -1 } },  
         { $project: { _id: 0, genre: 1, count: 1 } } 
     ]).toArray();
 }
+
 
 
 /* ======================== FUNCTION EXPORTS =========================
