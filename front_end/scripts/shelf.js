@@ -27,7 +27,7 @@ async function loadShelf() {
     books.forEach(book => {
         const li = document.createElement("li");
         li.innerText = `${book.title} (${book.author})`;
-        totalYear = totalYear + parseInt(book.pud_date);
+        totalYear = totalYear + parseInt(book.pub_date);
 
 
         // remove button
@@ -48,7 +48,9 @@ async function loadShelf() {
         list.appendChild(li);
     });
 
-    averageYear = Math.round(totalYear / books.length);
+    if (books.length > 0){
+        averageYear = Math.round(totalYear / books.length);
+    }
     if(averageYear > 0){
         averagePublishYear = document.getElementById("averagePublishYear");
         averagePublishYear.innerHTML = `Average published year of bookshelf: ${averageYear}`;
