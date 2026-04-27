@@ -85,6 +85,11 @@ main {
     max-width: 900px;
     margin: auto;
     width: 100%;
+
+    background-image: url('images/background_bookshelf.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 footer {
