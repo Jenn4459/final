@@ -21,7 +21,10 @@ async function getSubject(){
     const res = await fetch(`/api/subject/${googleID}`);
     const subject = await res.json();
     const disp = document.getElementById("subject");
-    disp.innerText = JSON.stringify(subject, null, 2);
+    const truncated = disp(subject.slice(0, 5));
+
+    disp.innerHTML = truncated.map(g => `<div>${g.genre} • ${g.count}</div>`).join("");    
+
     return subject;
 }
 
