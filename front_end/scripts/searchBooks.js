@@ -25,12 +25,14 @@ function displayResults(books) {
 
     books.forEach(book => {
     const div = document.createElement("div");
-    div.className = "book";
+    div.className = "book-card";
 
     div.innerHTML = `
-        <strong>${book.title}</strong><br>
-        Author: ${book.author_name ? book.author_name[0] : "Unknown"}<br>
-        First Published: ${book.first_publish_year || "N/A"}
+        <div class="book-card-title">${book.title}</div>
+        <div class="book-card-author">
+            ${book.author_name ? book.author_name[0] : "Unknown"}
+        </div>
+        <div>${book.first_publish_year || "N/A"}</div>
     `;
 
     const add = document.createElement("button");
