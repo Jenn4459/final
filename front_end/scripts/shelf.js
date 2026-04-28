@@ -42,14 +42,6 @@ async function loadShelf() {
         `;        
         totalYear = totalYear + parseInt(book.pub_date);
 
-        // see details
-        const det = document.createElement("button");
-        det.innerText = "Details";
-
-        det.addEventListener("click", async () => {
-            bookDetails(book.id);
-        })
-
         // remove button
         const btn = document.createElement("button");
         btn.innerText = "Remove";
