@@ -3,10 +3,10 @@ async function topSubject(isbn){
     const res = await fetch(url);
     const data = await res.json();
     const book = data[`ISBN:${isbn}`];
-    if(!book.subjects){
+    if(!book || !book.subjects){
         return [];
     }
-    const top_genere = subjects.splice(0,5).map((element, index, array) => {
+    const top_genere = book.subjects.splice(0,5).map((element, index, array) => {
         return element.name;
       });
     return top_genere;
@@ -14,12 +14,13 @@ async function topSubject(isbn){
 
 
 async function getSubject(){
+    const googleID = localStorage.getItem("googleID");
     const res = await fetch(`/api/subject/${googleID}`);
     const subject = await res.json();
     const disp = document.getElementById("subject");
     const truncated = subject.slice(0, 5);
 
-    disp.innerHTML = truncated.map(g => `<div>${g.genre} • ${g.count}</div>`).join("");    
+    disp.innerHTML = truncated.map(g => `<div>${g.genre}</div>`).join("");    
 
     return subject[0].genre;
 }
@@ -35,9 +36,11 @@ async function loadShelf() {
 
     books.forEach(book => {
         const li = document.createElement("li");
-        li.innerText = `${book.title} (${book.author})`;
+        li.innerHTML = `
+            <div class="book-card-title">${book.title}</div>
+            <div class="book-card-author">${book.author}</div>
+        `;        
         totalYear = totalYear + parseInt(book.pub_date);
-
 
         // remove button
         const btn = document.createElement("button");

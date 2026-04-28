@@ -30,9 +30,56 @@ body {
     text-align: center;
 }
 
-h1 {
+main {
+    flex: 1;
+    padding: 50px 20px;
+    max-width: 1000px;
+    margin: auto;
+    width: 100%;
+}
+
+.card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.book-card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.feature {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#shelfList li {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+button {
+    margin-top: 8px;
+}
+
+h1, #my-profile {
     color: var(--rose);
-    margin-bottom: 24px;
+}
+
+#welcome {
+    color: var(--rose);
+    padding-top: 50px;
+    font-size: 40px;
+    text-shadow: 2px 2px 3px black;
+}
+
+.tagline {
+    font-family: 'Brixton', serif;
+    font-size: 20px;
+    color: var(--rose);
 }
 
 /* header */
@@ -62,7 +109,7 @@ nav a:first-child {
 .nav-link {
     text-decoration: none;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 
@@ -79,14 +126,6 @@ nav a:first-child {
 
 /* layout */
 
-main {
-    flex: 1;
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: auto;
-    width: 100%;
-}
-
 footer {
     padding: 20px;
     background: var(--cream);
@@ -97,7 +136,7 @@ footer {
 /* buttons */
 
 button {
-    padding: 8px 16px;
+    padding: 10px 16px;
     border: none;
     border-radius: var(--radius);
     background: var(--rose);
@@ -119,14 +158,14 @@ button:hover {
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
 #searchInput {
     padding: 8px;
     border-radius: var(--radius);
     border: 1px solid #ddd;
-    width: 300px;
+    width: 350px;
 }
 
 /* cards */
@@ -142,7 +181,7 @@ button:hover {
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
-    padding: 10px;
+    padding: 15px;
 }
 
 .book-card img {
@@ -153,11 +192,17 @@ button:hover {
 .book-card-title {
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .book-card-author {
     font-size: 12px;
     color: var(--muted);
+    margin-bottom: 5px;
+}
+
+.book-card button {
+    margin-right: 5px;
 }
 
 /* shelf */
@@ -173,8 +218,6 @@ button:hover {
     padding: 12px;
     border-radius: var(--radius);
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
 }
 
 /* features (landing page) */
@@ -190,6 +233,7 @@ button:hover {
     padding: 20px;
     border-radius: var(--radius);
     flex: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 /* changing login button to profile picture/dropdown menu */
@@ -258,11 +302,7 @@ text-align: left;
         align-items: center;
         width: 100%;
     }
-    nav-link {
-        font-size: 11px;
-        padding: 5px;
-    }
-    profileImg {
+    #profileImg {
         width: 32px;
         height: auto;
         border-radius: 50%;
@@ -273,4 +313,40 @@ text-align: left;
     #shelf, #find {
         display: block;
     }
+}
+
+.header-section {
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+.header-section img {
+    width: 100%;
+}
+
+.header-section h1 {
+    margin-top: -180px;
+}
+
+.description {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+#subject {
+    text-align: left;
+    margin-top: 10px;
+}
+
+#subject div {
+    margin-bottom: 8px;
+    background: white;
+    padding: 8px;
+    border-radius: var(--radius);
+}
+
+#averagePublishYear {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
