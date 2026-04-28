@@ -305,3 +305,22 @@ text-align: left;
         display: block;
     }
 }
+
+.header-section {
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+.header-section img {
+    width: 100%;
+}
+
+.header-section h1 {
+    margin-top: -200px;
+}
+
+.description {
+    margin-top: 20px;
+    line-height: 1.6;
+}
