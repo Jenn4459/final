@@ -214,8 +214,6 @@ button:hover {
     padding: 12px;
     border-radius: var(--radius);
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
 }
 
 /* features (landing page) */
