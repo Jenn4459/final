@@ -150,14 +150,14 @@ button:hover {
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
 #searchInput {
     padding: 8px;
     border-radius: var(--radius);
     border: 1px solid #ddd;
-    width: 300px;
+    width: 350px;
 }
 
 /* cards */
@@ -173,7 +173,7 @@ button:hover {
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
-    padding: 10px;
+    padding: 15px;
 }
 
 .book-card img {
@@ -184,11 +184,17 @@ button:hover {
 .book-card-title {
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .book-card-author {
     font-size: 12px;
     color: var(--muted);
+    margin-bottom: 5px;
+}
+
+.book-card button {
+    margin-right: 5px;
 }
 
 /* shelf */
