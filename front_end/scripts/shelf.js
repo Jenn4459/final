@@ -3,10 +3,10 @@ async function topSubject(isbn){
     const res = await fetch(url);
     const data = await res.json();
     const book = data[`ISBN:${isbn}`];
-    if(!book.subjects){
+    if(!book || !book.subjects){
         return [];
     }
-    const top_genere = subjects.splice(0,5).map((element, index, array) => {
+    const top_genere = book.subjects.splice(0,5).map((element, index, array) => {
         return element.name;
       });
     return top_genere;
@@ -14,6 +14,7 @@ async function topSubject(isbn){
 
 
 async function getSubject(){
+    const googleID = localStorage.getItem("googleID");
     const res = await fetch(`/api/subject/${googleID}`);
     const subject = await res.json();
     const disp = document.getElementById("subject");
