@@ -62,7 +62,7 @@ async function loadShelf() {
     }
     if(averageYear > 0){
         averagePublishYear = document.getElementById("averagePublishYear");
-        averagePublishYear.innerHTML = `Average published year of bookshelf: ${averageYear}`;
+        averagePublishYear.innerHTML = `Year: ${averageYear}`;
     }
 
     getSubject();
