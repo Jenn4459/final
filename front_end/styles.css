@@ -324,3 +324,15 @@ text-align: left;
     margin-top: 20px;
     line-height: 1.6;
 }
+
+#subject {
+    text-align: left;
+    margin-top: 10px;
+}
+
+#subject div {
+    margin-bottom: 8px;
+    background: white;
+    padding: 8px;
+    border-radius: var(--radius);
+}
