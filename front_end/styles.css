@@ -67,9 +67,13 @@ button {
 
 h1 {
     color: var(--rose);
-    margin-bottom: 15px;
-    font-size: 50px;
-    text-shadow: 1px 1px 2px black;
+}
+
+#welcome {
+    color: var(--rose);
+    padding-top: 50px;
+    font-size: 40px;
+    text-shadow: 2px 2px 3px black;
 }
 
 .tagline {
@@ -298,11 +302,7 @@ text-align: left;
         align-items: center;
         width: 100%;
     }
-    nav-link {
-        font-size: 11px;
-        padding: 5px;
-    }
-    profileImg {
+    #profileImg {
         width: 32px;
         height: auto;
         border-radius: 50%;

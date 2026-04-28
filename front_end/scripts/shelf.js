@@ -19,7 +19,7 @@ async function getSubject(){
     const disp = document.getElementById("subject");
     const truncated = subject.slice(0, 5);
 
-    disp.innerHTML = truncated.map(g => `<div>${g.genre} • ${g.count}</div>`).join("");    
+    disp.innerHTML = truncated.map(g => `<div>${g.genre}</div>`).join("");    
 
     return subject[0].genre;
 }
@@ -40,6 +40,14 @@ async function loadShelf() {
             <div class="book-card-author">${book.author}</div>
         `;        
         totalYear = totalYear + parseInt(book.pub_date);
+
+        // see details
+        const det = document.createElement("button");
+        det.innerText = "Details";
+
+        det.addEventListener("click", async () => {
+            bookDetails(book.id);
+        })
 
         // remove button
         const btn = document.createElement("button");
