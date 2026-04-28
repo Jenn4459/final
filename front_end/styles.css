@@ -65,7 +65,7 @@ button {
     margin-top: 8px;
 }
 
-h1 {
+h1, #top-subjects, #averagePublicationYear {
     color: var(--rose);
 }
 
