@@ -352,15 +352,3 @@ text-align: left;
     font-weight: bold;
     margin-bottom: 10px;
 }
-
-#subject {
-    text-align: left;
-    margin-top: 10px;
-}
-
-#subject div {
-    margin-bottom: 8px;
-    background: white;
-    padding: 8px;
-    border-radius: var(--radius);
-}
