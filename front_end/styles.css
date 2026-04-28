@@ -32,7 +32,15 @@ body {
 
 h1 {
     color: var(--rose);
-    margin-bottom: 24px;
+    margin-bottom: 15px;
+    font-size: 50px;
+    text-shadow: 2px 2px 2px black;
+}
+
+.tagline {
+    font-family: 'Brixton', serif;
+    font-size: 20px;
+    color: var(--rose);
 }
 
 /* header */
