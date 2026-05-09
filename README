@@ -1,2 +1,19 @@
-link to site: https://finalproject1-a9cc72696071.herokuapp.com/
+# Book Link
 
+A full-stack web app where users build a virtual bookshelf and receive a personalized book recommendation.
+
+**Live demo**: https://finalproject1-a9cc72696071.herokuapp.com/
+
+#### Technologies: 
+- Node.js
+- Express
+- MongoDB
+- Google OAuth
+- OpenLibrary API
+- BigBook API
+
+#### Features
+- User authentication with Google OAuth
+- Add, view, edit, and delete books
+- Personalized book recommendation based on users shelf
+- Responsive front-end design
