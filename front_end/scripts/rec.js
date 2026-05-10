@@ -31,11 +31,7 @@ async function getRecommendation(){
         const book = filteredBooks[0];
         const title = book.title;
         const searchResult = await searchBook(title);
-        if (searchResult && searchResult.isbn && searchResult.isbn[0]) {
-            window.location.href = `/details.html?isbn=${searchResult.isbn[0]}`;
-        } else {
-            alert("Found a recommendation, but could not find book details.");
-        }
+        window.location.href = `/details.html?isbn=${searchResult.isbn[0]}`;
     } else {
         alert("No new recommendations — add books from different subjects to see new suggestions!");
     }
