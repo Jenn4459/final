@@ -48,9 +48,11 @@ async function addBook(book) {
     const data = await res.json();
 
     if (data.success) {
-        document.getElementById("status").innerText = "Book added!";
+        // document.getElementById("status").innerText = "Book added!";
+        alert("Your book was added!!");
     } else {
-        document.getElementById("status").innerText = "Book already exists or failed";
+        // document.getElementById("status").innerText = "Book already exists or failed";
+        alert("Book already exists or failed to add.");
     }
 }
 
